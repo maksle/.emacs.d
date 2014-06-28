@@ -14,13 +14,6 @@
   "Removes trailing newline from shell-command-to-string output"
   (substring (shell-command-to-string cmd) 0 -1))
 
-(defun isearch-yank-selection ()
-  "Put selection from buffer into search string."
-  (interactive)
-  (when (region-active-p)
-    (deactivate-mark))
-  (isearch-yank-internal (lambda () (mark))))
-
 (defun region-as-string ()
   (buffer-substring (region-beginning)
                     (region-end)))
@@ -38,4 +31,13 @@
     (add-to-history 'search-ring (region-as-string))
     (deactivate-mark))
   (call-interactively 'isearch-backward))
+
+(defun goto-line-with-feedback ()
+  "Show line numbers temporarily, while prompting for the line number input"
+  (interactive)
+  (unwind-protect
+      (progn
+        (linum-mode 1)
+        (call-interactively 'goto-line))
+    (linum-mode -1)))
 

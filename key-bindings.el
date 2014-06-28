@@ -91,6 +91,14 @@
 ;; Copy file path to kill ring
 (global-set-key (kbd "C-x M-w") 'copy-current-file-path)
 
+;; Window switching
+(windmove-default-keybindings) ;; Shift+direction
+(global-set-key (kbd "C-x -") 'toggle-window-split)
+(global-set-key (kbd "C-x C--") 'rotate-windows)
+(global-unset-key (kbd "C-x C-+")) ;; don't zoom like this
+
+(global-set-key (kbd "C-x 3") 'split-window-right-and-move-there-dammit)
+
 ;; Perform general cleanup.
 (global-set-key (kbd "C-c n") 'cleanup-buffer)
 (global-set-key (kbd "C-c C-n") 'cleanup-buffer)
@@ -107,6 +115,8 @@
 (global-set-key (kbd "C-c C-e") 'eval-and-replace)
 
 ;; Navigation bindings
+(global-set-key [remap goto-line] 'goto-line-with-feedback)
+
 (global-set-key (kbd "M-p") 'backward-paragraph)
 (global-set-key (kbd "M-n") 'forward-paragraph)
 
@@ -150,6 +160,9 @@
 (global-set-key (kbd "<C-S-down>") 'move-text-down)
 (global-set-key (kbd "<C-S-up>") 'move-text-up)
 
+;; Toggle quotes
+(global-set-key (kbd "C-\"") 'toggle-quotes)
+
 ;; Sorting
 (global-set-key (kbd "M-s l") 'sort-lines)
 
@@ -159,5 +172,21 @@
 ;; Magit
 (global-set-key (kbd "C-x m") 'magit-status)
 (autoload 'magit-status "magit")
+
+;; Find files by name and display results in dired
+(global-set-key (kbd "M-s f") 'find-name-dired)
+
+;; Multi-occur
+(global-set-key (kbd "M-s m") 'multi-occur)
+(global-set-key (kbd "M-s M") 'multi-occur-in-matching-buffers) 
+
+;; View occurence in occur mode
+(global-set-key (kbd "C-c o") 'occur)
+(define-key occur-mode-map (kbd "v") 'occur-mode-display-occurence)
+(define-key occur-mode-map (kbd "n") 'next-line)
+(define-key occur-mode-map (kbd "p") 'previous-line)
+
+;; leave occure-edit mode easily
+(define-key occur-edit-mode-map (kbd "C-x q") 'occur-cease-edit)
 
 (provide 'key-bindings)

@@ -39,6 +39,24 @@
     (indent-for-tab-command)))
 
 
+(defun duplicate-current-line-or-region (arg)
+  "Duplicates the current line or region ARG times.
+If there's no region, the current line will be duplicated."
+  (interactive "p")
+  (if (region-active-p)
+      (let ((beg (region-beginning))
+            (end (region-end)))
+        (duplicate-region arg beg end)
+        (one-shot-keybinding "d" (? (duplicate-region 1 beg end))))
+    (duplicate-current-line arg)
+    (one-shot-keybinding "d" 'duplicate-current-line)))
+
+(defun one-shot-keybinding (key command)
+  (set-temporary-overlay-map
+   (let ((map (make-sparse-keymap)))
+     (define-key map (kbd key) command)
+     map) t))
+
 (defun replace-region-by (fn)
   (let* ((beg (region-beginning))
          (end (region-end))
@@ -52,22 +70,22 @@ If no START and END is provided, the current region-beginning and
 region-end is used."
   (interactive "p")
   (save-excursion
-   (let* ((start (or start (region-beginning)))
-          (end (or end (region-end)))
-          (region (buffer-substring start end)))
-     (goto-char end)
-     (dotimes (i num)
-       (insert region)))))
+    (let* ((start (or start (region-beginning)))
+           (end (or end (region-end)))
+           (region (buffer-substring start end)))
+      (goto-char end)
+      (dotimes (i num)
+        (insert region)))))
 
 (defun duplicate-current-line (&optional num)
   "Duplicate the current line NUM times."
   (interactive "p")
   (save-excursion
-   (when (eq (point-at-eol) (point-max))
-     (goto-char (point-max))
-     (newline)
-     (forward-char -1))
-   (duplicate-region num (point-at-bol) (1+ (point-at-eol)))))
+    (when (eq (point-at-eol) (point-max))
+      (goto-char (point-max))
+      (newline)
+      (forward-char -1))
+    (duplicate-region num (point-at-bol) (1+ (point-at-eol)))))
 
 (defun duplicate-current-line-or-region (arg)
   "Duplicates the current line or region ARG times.
@@ -121,6 +139,42 @@ If there's no region, the current line will be duplicated."
   (back-to-indentation)
   (kill-line))
 
+;; toggle quotes
+
+(defun current-quotes-char ()
+  (nth 3 (syntax-ppss)))
+
+(defalias 'point-is-in-string-p 'current-quotes-char)
+
+(defun move-point-forward-out-of-string ()
+  (while (point-is-in-string-p) (forward-char)))
+
+(defun move-point-backward-out-of-string ()
+  (while (point-is-in-string-p) (backward-char)))
+
+(defun alternate-quotes-char ()
+  (if (eq ?' (current-quotes-char)) ?\" ?'))
+
+(defun toggle-quotes ()
+  (interactive)
+  (if (point-is-in-string-p)
+      (let ((old-quotes (char-to-string (current-quotes-char)))
+            (new-quotes (char-to-string (alternate-quotes-char)))
+            (start (make-marker))
+            (end (make-marker)))
+        (save-excursion
+          (move-point-forward-out-of-string)
+          (backward-delete-char 1)
+          (set-marker end (point))
+          (insert new-quotes)
+          (move-point-backward-out-of-string)
+          (delete-char 1)
+          (insert new-quotes)
+          (set-marker start (point))
+          (replace-string new-quotes (concat "\\" new-quotes) nil start end)
+          (replace-string (concat "\\" old-quotes) old-quotes nil start end)))
+    (error "Point isn't in a string")))
+
 (defun nxml-reformat-xml ()
   "Reformats xml to make it readable (respects current selection)."
   (interactive)
@@ -159,3 +213,23 @@ If there's no region, the current line will be duplicated."
                 (message path-string)
                 (kill-new path-string))
             path-string))))))
+
+(defun css-expand-statement ()
+(interactive)
+(save-excursion
+(end-of-line)
+(search-backward "{")
+(forward-char 1)
+(let ((beg (point)))
+(newline)
+(er/mark-inside-pairs)
+(replace-regexp ";" ";\n" nil (region-beginning) (region-end))
+      (indent-region beg (point)))))
+
+(defun css-contract-statement ()
+  (interactive)
+  (end-of-line)
+  (search-backward "{")
+  (while (not (looking-at "}"))
+    (join-line -1))
+  (back-to-indentation))
