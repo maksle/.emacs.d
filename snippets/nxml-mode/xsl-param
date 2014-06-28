@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: <xsl:param>
+# key: p
+# --
+<xsl:param name="$1" select="$0"/>

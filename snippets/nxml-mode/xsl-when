@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: <xsl:when>
+# key: w
+# --
+<xsl:when test="$1">
+$0
+</xsl:when>

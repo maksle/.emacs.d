@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: wrap
+# binding: C-c C-w
+# --
+<${1:p}>$0</$1>

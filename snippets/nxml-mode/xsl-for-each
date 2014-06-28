@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: <xsl:for-each>
+# key: for
+# --
+<xsl:for-each select="$1">
+$0
+</xsl:for-each>

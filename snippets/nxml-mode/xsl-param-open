@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: <xsl:param> open
+# key: po
+# --
+<xsl:param name="$1">
+$0
+</xsl:param>

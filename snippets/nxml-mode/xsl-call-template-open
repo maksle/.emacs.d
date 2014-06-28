@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: <xsl:call-template> open
+# key: cto
+# --
+<xsl:call-template name="$1"$2>
+$0
+</xsl:call-template>

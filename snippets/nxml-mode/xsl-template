@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: <xsl:template name>
+# key: t
+# --
+<xsl:template name="$1">
+$0
+</xsl:template>

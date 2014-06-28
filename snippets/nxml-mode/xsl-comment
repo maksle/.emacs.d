@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: <xsl:comment>
+# key: com
+# --
+<xsl:comment>$0</xsl:comment>

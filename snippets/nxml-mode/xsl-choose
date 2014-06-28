@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: <xsl:choose>
+# key: c
+# --
+<xsl:choose>
+<xsl:when test="$1">
+$0
+</xsl:when>
+<xsl:otherwise>
+</xsl:otherwise>
+</xsl:choose>

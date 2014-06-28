@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: <xsl:with-param> open
+# key: wpo
+# --
+<xsl:with-param name="$1">
+$0
+</xsl:with-param>

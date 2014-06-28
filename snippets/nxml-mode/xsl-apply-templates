@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: <xsl:apply-templates>
+# key: at
+# --
+<xsl:apply-templates select="$0"/>
