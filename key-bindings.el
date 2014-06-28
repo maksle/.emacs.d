@@ -68,10 +68,6 @@
 ;; Use M-w for copy-line if no active region
 (global-set-key (kbd "M-w") 'save-region-or-current-line)
 
-;; Make C-S-backspace feel like it works when on VPN
-(if (equal (symbol-name system-type) "windows-nt")
-    (global-set-key (kbd "<C-backspace>") 'kill-whole-line))
-
 ;; Comment/uncomment line
 (global-set-key (kbd "C-M-;") 'comment-line-dwim)
 
@@ -169,6 +165,9 @@
 
 ;; Browse the kill ring
 (global-set-key (kbd "C-x C-y") 'browse-kill-ring)
+
+;; Buffer file functions
+(global-set-key (kbd "C-x C-r") 'rename-current-buffer-file)
 
 ;; Magit
 (global-set-key (kbd "C-x m") 'magit-status)
