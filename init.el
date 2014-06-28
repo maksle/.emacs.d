@@ -1,10 +1,17 @@
+;; Turn off mouse interface early in startup to avoid momentary display
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+
+;; No splash screen please ... jeez
+(setq inhibit-startup-message t)
+
 (add-to-list 'load-path user-emacs-directory)
 (add-to-list 'load-path (expand-file-name "elpa" user-emacs-directory))
 (add-to-list 'load-path (expand-file-name "site-lisp" user-emacs-directory))
 (let ((default-directory "~/.emacs.d/elpa/"))
   (normal-top-level-add-subdirs-to-load-path))
 
-(require 'better-defaults)
 (require 'sane-defaults)
 
 ;; No splash screen please ... jeez
@@ -19,6 +26,9 @@
 
 (setq-default save-place t)
 (setq save-place-file (expand-file-name ".places" user-emacs-directory))
+
+;; Make backups of files, even when they're in version control
+(setq vc-make-backup-files t)
 
 ;; Setup packages
 (require 'setup-package)
