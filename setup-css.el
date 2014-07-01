@@ -1,5 +1,9 @@
+(require-package 'less-css-mode)
+
+(setq less-css-compile-at-save t)
+
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . css-mode))
-(add-to-list 'auto-mode-alist '("\\.less\\'" . css-mode))
+(add-to-list 'auto-mode-alist '("\\.less\\'" . less-css-mode))
 
 ;;; Colourise CSS colour literals
 (when (eval-when-compile (>= emacs-major-version 24))
@@ -8,10 +12,8 @@
   (dolist (hook '(css-mode-hook html-mode-hook sass-mode-hook))
     (add-hook hook 'rainbow-mode)))
 
-(require-package 'less-css-mode)
-
 (add-hook 'css-mode-hook 'add-auto-complete-functionality)
-
+ 
 ;; Auto-complete CSS keywords
 (defun add-auto-complete-functionality ()
   (provide 'setup-auto-complete)

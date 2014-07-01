@@ -42,7 +42,6 @@
 (require 'setup-cpp-mode)
 (require 'setup-org-mode)
 (require 'setup-html-mode)
-(require 'setup-source-safe)
 (require 'setup-css)
 ;; (require 'xpath-parser)
 (eval-after-load 'magit '(require 'setup-magit))
