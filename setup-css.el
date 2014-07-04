@@ -1,6 +1,7 @@
 (require-package 'less-css-mode)
 
 (setq less-css-compile-at-save t)
+;; (setq less-css-lessc-options nil)
 
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . css-mode))
 (add-to-list 'auto-mode-alist '("\\.less\\'" . less-css-mode))
