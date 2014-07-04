@@ -60,7 +60,6 @@
 (setq column-number-mode t)
 
 ;; Lines should be 80 characters wide, not 72
-;; (setq fill-column 80)
 (setq-default fill-column 80)
 
 ;; Save a list of recent files visited. (open recent file with C-x f)
@@ -68,11 +67,18 @@
 (setq recentf-max-saved-items 100) ;; just 20 is too recent
 (setq recentf-max-menu-items 25)
 
+;; Save minibuffer history
+(savehist-mode 1)
+(setq history-length 1000)
+
 ;; Undo/redo window configuration with C-c <left>/<right>
 (winner-mode 1)
 
 ;; Never insert tabs
 (set-default 'indent-tabs-mode nil)
+
+;; Show me empty lines after buffer end
+(set-default 'indicate-empty-lines t)
 
 ;; Other tab stuff
 (setq tab-stop-list (number-sequence 4 200 4))
@@ -88,13 +94,19 @@
 (setq-default truncate-lines t)
 
 ;; Keep cursor away from edges when scrolling up/down
-;; (require 'smooth-scrolling)
+(require 'smooth-scrolling)
 
 ;; Allow recursive minibuffers
 (setq enable-recursive-minibuffers t)
 
 ;; Don't be so stingy on the memory, we have lots now. It's the distant future.
 (setq gc-cons-threshold 20000000)
+
+;; org-mode: Don't ruin S-arrow to switch windows please (use M-+ and M-- instead to toggle)
+(setq org-replace-disputed-keys t)
+
+;; Fontify org-mode code blocks
+(setq org-src-fontify-natively t)
 
 ;; Sentences do not need double spaces to end. Period.
 (set-default 'sentence-end-double-space nil)
@@ -103,6 +115,8 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
+;; Represent undo-history as an actual tree (visualize with C-x u)
+(setq undo-tree-mode-lighter "")
 (require 'undo-tree)
 (global-undo-tree-mode)
 
