@@ -1,16 +1,25 @@
-(require 'saveplace)
-(setq-default save-place t)
-
 (show-paren-mode 1)
 (setq-default indent-tabs-mode nil)
+
 (setq x-select-enable-clipboard t
       x-select-enable-primary t
       save-interprogram-paste-before-kill t
       apropos-do-all t
-      mouse-yank-at-point t
-      save-place-file (concat user-emacs-directory "places")
-      backup-directory-alist `(("." . ,(concat user-emacs-directory
-                                               "backups"))))
+      mouse-yank-at-point t)
+
+;; Make backups of files, even when they're in version control
+(setq vc-make-backup-files t)
+
+;; Save point position between sessions
+(require 'saveplace)
+(setq-default save-place t)
+(setq save-place-file (expand-file-name ".places" user-emacs-directory))
+
+;; Write backup files to own directory
+(setq backup-directory-alist
+      `(("." . ,(expand-file-name
+                 (concat user-emacs-directory "backups")))))
+
 ;; Allow pasting selection outside of Emacs
 (setq x-select-enable-clipboard t)
 
@@ -95,6 +104,13 @@
 
 ;; Keep cursor away from edges when scrolling up/down
 (require 'smooth-scrolling)
+
+(put 'scroll-left 'disabled nil)
+
+;; Run at full power please
+(put 'downcase-region 'disabled nil)
+(put 'upcase-region 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
 
 ;; Allow recursive minibuffers
 (setq enable-recursive-minibuffers t)

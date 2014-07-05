@@ -6,16 +6,17 @@
 ;; No splash screen please ... jeez
 (setq inhibit-startup-message t)
 
+;; Set path to dependencies
+(setq site-lisp-dir
+      (expand-file-name "site-lisp" user-emacs-directory))
+
+;; Set up load path
 (add-to-list 'load-path user-emacs-directory)
+(add-to-list 'load-path site-lisp-dir)
+
 (add-to-list 'load-path (expand-file-name "elpa" user-emacs-directory))
-(add-to-list 'load-path (expand-file-name "site-lisp" user-emacs-directory))
 (let ((default-directory "~/.emacs.d/elpa/"))
   (normal-top-level-add-subdirs-to-load-path))
-
-(require 'sane-defaults)
-
-;; No splash screen please ... jeez
-(setq inhibit-startup-message t)
 
 ;; Keep emacs Custom-settings in separate file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -24,48 +25,87 @@
 ;; Set up appearance early
 (require 'appearance)
 
-(setq-default save-place t)
-(setq save-place-file (expand-file-name ".places" user-emacs-directory))
+;; Add external projects to load path
+(let ((default-directory "~/.emacs.d/site-lisp/"))
+  (normal-top-level-add-subdirs-to-load-path))
 
-;; Make backups of files, even when they're in version control
-(setq vc-make-backup-files t)
+;; (dolist (project (directory-files site-lisp-dir t "\\w+"))
+;;   (when (file-directory-p project)
+;;     (add-to-list 'load-path project)))
+
 
 ;; Setup packages
 (require 'setup-package)
 
-(require 'setup-ido)
-(require 'setup-yasnippet)
-(require 'setup-hippie)
-(require 'setup-auto-complete)
-(require 'setup-nxml-mode)
-(require 'setup-csharp-mode)
-(require 'setup-cpp-mode)
-(require 'setup-org-mode)
-(require 'setup-html-mode)
-(require 'setup-css)
-;; (require 'xpath-parser)
+;; Install extensions if they're missing
+(defun init--install-packages ()
+  (packages-install
+   '(apache-mode
+     auto-complete
+     csharp-mode
+     css-eldoc
+     flx-ido
+     geben
+     guide-key
+     less-css-mode
+     magit
+     move-text
+     rainbow-mode
+     shell-command
+     smooth-scrolling
+     web-mode
+     yasnippet
+     highlight-escape-sequences
+     )))
+
+(condition-case nil
+    (init--install-packages)
+  (error
+   (package-refresh-contents)
+   (init--install-packages)))
+
+(require 'sane-defaults)
+
+;; Load stuff on demand
+(autoload 'flycheck-mode "setup-flycheck" nil t)
+(autoload 'auto-complete-mode "auto-complete" nil t)
+
+;; Setup extensions
+(eval-after-load 'ido '(require 'setup-ido))
 (eval-after-load 'magit '(require 'setup-magit))
-(eval-after-load "sql" '(load-library "tsql-indent"))
+(eval-after-load 'sql '(require tsql-indent))
+(eval-after-load 'org '(require 'setup-org-mode))
+;; (eval-after-load 'dired '(require 'setup-dired))
+;; (eval-after-load 'grep '(require 'setup-rgrep))
+;; (eval-after-load 'shell '(require 'setup-shell))
 
-;; (require 'setup-cygwin-shell)
+(require 'setup-hippie)
+(require 'setup-yasnippet)
+;; (require 'setup-auto-complete)
+(require 'setup-flycheck)
 
-(add-to-list 'auto-mode-alist '("\\.asp\\'" . web-mode))
+;; Language specific setup files
+(eval-after-load 'js2-mode '(require 'setup-js2-mode))
+(eval-after-load 'nxml-mode '(require 'setup-nxml-mode))
+(eval-after-load 'csharp-mode '(require 'setup-csharp-mode))
+(eval-after-load 'cpp-mode '(require 'setup-cpp-mode))
+(eval-after-load 'css-mode '(require 'setup-css))
+(eval-after-load 'html-mode '(require 'setup-html-mode))
 
-(autoload 'asp-mode "asp-mode")
-    (setq auto-mode-alist 
-       (cons '("\\.asp\\'" . asp-mode) auto-mode-alist))
+(require 'mode-mappings)
+
+;; Highlight escape sequences
+(require 'highlight-escape-sequences)
+(hes-mode)
+(put 'font-lock-regexp-grouping-backslash 'face-alias 'font-lock-builtin-face)
 
 (require 'guide-key)
-(setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-x v" "C-x 8"))
+(setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-x v" "C-x 8" "C-x C-k" "f1" "C-x C-y"))
 (guide-key-mode 1)
 (setq guide-key/recursive-key-sequence-flag t)
 (setq guide-key/popup-window-position 'bottom)
 (setq guide-key/highlight-command-regexp "rectangle")
 (setq guide-key/idle-delay 0.07)
-
-;; (add-to-list 'load-path "c:/Users/mgrinman/AppData/Roaming/npm/node_modules/tern/emacs")
-;; (autoload 'tern-mode "tern.el" nil t)
-;; (add-hook 'js-mode-hook (lambda () (tern-mode t)))
 
 ;; Functions (load all files in defuns-dir)
 (setq defuns-dir (expand-file-name "defuns" user-emacs-directory))
@@ -73,7 +113,18 @@
   (when (file-regular-p file)
     (load file)))
 
+(require 'expand-region)
+(require 'multiple-cursors)
 (require 'smart-forward)
+(require 'wgrep)
+
+;; Fill column indicator
+(require 'fill-column-indicator)
+(setq fci-rule-color "#111122")
+
+;; Browse kill ring
+(require 'browse-kill-ring)
+(setq browse-kill-ring-quit-action 'save-and-restore)
 
 ;; Smart M-x is smart
 (require 'smex)
@@ -81,14 +132,12 @@
 
 ;; Setup key bindings
 (require 'key-bindings)
-(put 'scroll-left 'disabled nil)
+
+;; Conclude init by setting up specifics for the current user
 
 ;; Settings for currently logged in user
 (setq user-settings-dir
       (concat user-emacs-directory "users/" user-login-name))
-
-;; Conclude init by setting up specifics for the current user
+(add-to-list 'load-path user-settings-dir)
 (when (file-exists-p user-settings-dir)
   (mapc 'load (directory-files user-settings-dir nil "^[^#].*el$")))
-
-

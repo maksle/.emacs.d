@@ -35,6 +35,7 @@
 
 ;; Quickly jump in document with ace-jump-mode
 (define-key global-map (kbd "C-;") 'ace-jump-mode)
+(autoload 'ace-jump-mode "ace-jump-mode" "Emacs quick move minor mode" t)
 
 ;; Jump to a definition in the current file. (This is awesome)
 (global-set-key (kbd "C-x C-i") 'ido-imenu)
