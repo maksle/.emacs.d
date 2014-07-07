@@ -20,8 +20,8 @@
 (add-to-list 'auto-mode-alist '("sites-\\(available\\|enabled\\)/" . apache-mode))
 (add-to-list 'auto-mode-alist '("isapifilterrules\\.dat\\'" . apache-mode))
 
+;; ASP mode
 (autoload 'asp-mode "asp-mode")
 (add-to-list 'auto-mode-alist '("\\.asp\\'" . web-mode))
-
 
 (provide 'mode-mappings)

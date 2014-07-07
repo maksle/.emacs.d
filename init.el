@@ -50,6 +50,7 @@
      less-css-mode
      magit
      move-text
+     php-mode
      rainbow-mode
      shell-command
      smooth-scrolling
