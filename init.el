@@ -74,7 +74,7 @@
 ;; Setup extensions
 (eval-after-load 'ido '(require 'setup-ido))
 (eval-after-load 'magit '(require 'setup-magit))
-(eval-after-load 'sql '(require 'tsql-indent))
+(eval-after-load 'sql '(load-library "sql-indent"))
 (eval-after-load 'org '(require 'setup-org-mode))
 ;; (eval-after-load 'dired '(require 'setup-dired))
 ;; (eval-after-load 'grep '(require 'setup-rgrep))
