@@ -24,4 +24,7 @@
 (autoload 'asp-mode "asp-mode")
 (add-to-list 'auto-mode-alist '("\\.asp\\'" . web-mode))
 
+;; nxml
+(add-to-list 'auto-mode-alist '("\\.fo\\'" . nxml-mode))
+
 (provide 'mode-mappings)
