@@ -1,3 +1,6 @@
+(which-function-mode 1)
+(setq which-func-unkown "N/A")
+
 (show-paren-mode 1)
 (setq-default indent-tabs-mode nil)
 

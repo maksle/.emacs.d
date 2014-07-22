@@ -42,6 +42,7 @@
   (packages-install
    '(apache-mode
      auto-complete
+     change-inner
      csharp-mode
      css-eldoc
      flx-ido
@@ -80,10 +81,12 @@
 ;; (eval-after-load 'grep '(require 'setup-rgrep))
 ;; (eval-after-load 'shell '(require 'setup-shell))
 
+(require 'setup-windows)
 (require 'setup-hippie)
 (require 'setup-yasnippet)
-;; (require 'setup-auto-complete)
+(require 'setup-html-mode)
 (require 'setup-flycheck)
+;; (require 'setup-auto-complete)
 
 ;; Language specific setup files
 (eval-after-load 'js2-mode '(require 'setup-js2-mode))
@@ -91,7 +94,7 @@
 (eval-after-load 'csharp-mode '(require 'setup-csharp-mode))
 (eval-after-load 'cpp-mode '(require 'setup-cpp-mode))
 (eval-after-load 'css-mode '(require 'setup-css))
-(eval-after-load 'html-mode '(require 'setup-html-mode))
+(eval-after-load 'less-css-mode '(require 'setup-less-mode))
 
 (require 'mode-mappings)
 

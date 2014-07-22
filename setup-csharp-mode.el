@@ -3,6 +3,8 @@
              (c-set-style "c#")
              (turn-on-auto-revert-mode)))
 
+(add-to-list 'which-func-modes 'csharp-mode)
+
 (provide 'setup-csharp-mode)
 
 ;; ;; (turn-on-font-lock)
