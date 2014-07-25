@@ -1,7 +1,8 @@
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 (setq ansi-color-names-vector
       ["black" "red" "green" "yellow"
        "#729fcf" "magenta" "cyan" "white"])
-(setq ansi-color-map (ansi-color-make-color-map))
+(setq ansi-color-map '(ansi-color-make-color-map))
 
 ;; enable super and hyper keys on windows
 (setq w32-pass-lwindow-to-system nil
