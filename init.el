@@ -40,7 +40,8 @@
 ;; Install extensions if they're missing
 (defun init--install-packages ()
   (packages-install
-   '(apache-mode
+   '(anzu
+     apache-mode
      auto-complete
      change-inner
      csharp-mode
@@ -48,6 +49,7 @@
      flx-ido
      geben
      guide-key
+     highlight-escape-sequences
      less-css-mode
      magit
      move-text
@@ -55,9 +57,9 @@
      rainbow-mode
      shell-command
      smooth-scrolling
+     volatile-highlights
      web-mode
      yasnippet
-     highlight-escape-sequences
      )))
 
 (condition-case nil
@@ -121,6 +123,16 @@
 (require 'multiple-cursors)
 (require 'smart-forward)
 (require 'wgrep)
+
+;; Highlight changes
+(require 'volatile-highlights)
+(volatile-highlights-mode t)
+(diminish 'volatile-highlights-mode)
+
+;; anzu-mode enhances isearch by showing total matches and current match position
+(require 'anzu)
+(diminish 'anzu-mode)
+(global-anzu-mode)
 
 ;; Fill column indicator
 (require 'fill-column-indicator)

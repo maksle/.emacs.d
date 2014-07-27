@@ -16,11 +16,14 @@
                    name (file-name-nondirectory new-name)))))))
 
 (defun copy-current-file-path ()
-  "Add current file path to kill ring. Limits the filename to project root if possible."
+  "Copy the current buffer file name to the clipboard."
   (interactive)
-  (let ((filename (buffer-file-name)))
-    (message filename)
-    (kill-new filename)))
+  (let ((filename (if (equal major-mode 'dired-mode)
+                      default-directory
+                    (buffer-file-name))))
+    (when filename
+      (kill-new filename)
+      (message filename))))
 
 (defun find-or-create-file-at-point ()
   "Guesses what parts of the buffer under point is a file name and opens it."

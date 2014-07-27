@@ -197,4 +197,7 @@
 ;; leave occure-edit mode easily
 (define-key occur-edit-mode-map (kbd "C-x q") 'occur-cease-edit)
 
+;; align regexp
+(global-set-key (kbd "C-x \\") 'align-regexp)
+
 (provide 'key-bindings)
