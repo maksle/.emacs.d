@@ -69,4 +69,26 @@
 (defadvice sgml-delete-tag (after reindent activate)
   (indent-region (point-min) (point-max)))
 
+;; toggle modes
+;; (defun my-web-mode-hook ()
+;;   "Hooks for Web mode."
+;;   (setq web-mode-markup-indent-offset 4)
+;;   (setq web-mode-css-indent-offset 4)
+;;   (setq web-mode-code-indent-offset 4)
+;; )
+;; (add-hook 'web-mode-hook 'my-web-mode-hook)
+
+(eval-after-load "html-mode"
+  '(progn
+     (defun toggle-jinja2-html-mode ()
+       (interactive)
+       "Toggle mode between web-mode and html-mode"
+       (cond ((equal major-mode 'jinja2-mode)
+              (html-mode))
+             ((equal major-mode 'html-mode)
+              (jinja2-mode))))
+
+     (define-key html-mode-map [f5] 'toggle-jinja2-html-mode)
+     (define-key jinja2-mode-map [f5] 'toggle-jinja2-html-mode)
+     ))
 (provide 'setup-html-mode)
