@@ -215,15 +215,15 @@ If there's no region, the current line will be duplicated."
             path-string))))))
 
 (defun css-expand-statement ()
-(interactive)
-(save-excursion
-(end-of-line)
-(search-backward "{")
-(forward-char 1)
-(let ((beg (point)))
-(newline)
-(er/mark-inside-pairs)
-(replace-regexp ";" ";\n" nil (region-beginning) (region-end))
+  (interactive)
+  (save-excursion
+    (end-of-line)
+    (search-backward "{")
+    (forward-char 1)
+    (let ((beg (point)))
+      (newline)
+      (er/mark-inside-pairs)
+      (replace-regexp ";" ";\n" nil (region-beginning) (region-end))
       (indent-region beg (point)))))
 
 (defun css-contract-statement ()
