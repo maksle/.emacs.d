@@ -126,6 +126,10 @@
 (require 'smart-forward)
 (require 'wgrep)
 
+;; Fill column indicator
+(require 'fill-column-indicator)
+(setq fci-rule-color "#111122")
+
 ;; Highlight changes
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
