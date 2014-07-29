@@ -59,6 +59,7 @@
      rainbow-mode
      shell-command
      smooth-scrolling
+     smartparens
      volatile-highlights
      web-mode
      yasnippet
@@ -91,6 +92,20 @@
 (require 'setup-html-mode)
 (require 'setup-flycheck)
 ;; (require 'setup-auto-complete)
+
+;; Default setup of smartparens
+(require 'smartparens-config)
+(setq sp-base-key-bindings 'paredit)
+(setq sp-autoskip-closing-pair 'always)
+(setq sp-hybrid-kill-entire-symbol nil)
+;; (setq sp-autoescape-string-quote nil)
+(sp-use-paredit-bindings)
+(--each '(css-mode-hook
+          js-mode-hook
+          ruby-mode
+          markdown-mode)
+  (add-hook it 'turn-on-smartparens-mode))
+(show-smartparens-global-mode +1)
 
 ;; Language specific setup files
 (eval-after-load 'js2-mode '(require 'setup-js2-mode))
@@ -133,11 +148,9 @@
 ;; Highlight changes
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
-(diminish 'volatile-highlights-mode)
 
 ;; anzu-mode enhances isearch by showing total matches and current match position
 (require 'anzu)
-(diminish 'anzu-mode)
 (global-anzu-mode)
 
 ;; Fill column indicator
@@ -155,7 +168,6 @@
 ;; Elisp go-to-definition with M-. and back again with M-,
 (autoload 'elisp-slime-nav-mode "elisp-slime-nav")
 (add-hook 'emacs-lisp-mode-hook (lambda () (elisp-slime-nav-mode t) (eldoc-mode 1)))
-(eval-after-load 'elisp-slime-nav '(diminish 'elisp-slime-nav-mode))
 
 ;; Setup key bindings
 (require 'key-bindings)
