@@ -101,6 +101,8 @@
 ;; (setq sp-autoescape-string-quote nil)
 (sp-use-paredit-bindings)
 (--each '(css-mode-hook
+          emacs-list-mode-hook
+          perl-mode-hook
           js-mode-hook
           ruby-mode
           markdown-mode)

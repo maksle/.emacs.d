@@ -1,9 +1,6 @@
 (add-hook  'csharp-mode-hook
            (lambda ()
-             (c-set-style "c#")
-             (turn-on-auto-revert-mode)))
-
-(add-to-list 'which-func-modes 'csharp-mode)
+             (c-set-style "c#")))
 
 (provide 'setup-csharp-mode)
 

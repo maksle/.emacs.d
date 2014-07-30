@@ -7,5 +7,4 @@
 
 (add-hook 'c++-mode-hook 'my-setup-cpp-mode-hook)
 
-
 (provide 'setup-cpp-mode)
