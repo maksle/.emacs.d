@@ -28,4 +28,4 @@
         w32-rwindow-modifier 'super ; Right Windows key
         w32-apps-modifier 'hyper)) ; Menu key
 
-(provide 'setup-windows)
+(provide 'setup-shell)
