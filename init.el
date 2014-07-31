@@ -86,7 +86,7 @@
 ;; (eval-after-load 'grep '(require 'setup-rgrep))
 ;; (eval-after-load 'shell '(require 'setup-shell))
 
-(require 'setup-windows)
+(require 'setup-shell)
 (require 'setup-hippie)
 (require 'setup-yasnippet)
 (require 'setup-html-mode)
