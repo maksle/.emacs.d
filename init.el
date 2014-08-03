@@ -113,10 +113,9 @@
 ;; Language specific setup files
 (eval-after-load 'js2-mode '(require 'setup-js2-mode))
 (eval-after-load 'nxml-mode '(require 'setup-nxml-mode))
-(eval-after-load 'csharp-mode '(require 'setup-c-modes))
-(eval-after-load 'cpp-mode '(require 'setup-c-modes))
 (eval-after-load 'css-mode '(require 'setup-css))
 (eval-after-load 'less-css-mode '(require 'setup-less-mode))
+(require 'setup-c-modes)
 
 (require 'mode-mappings)
 
