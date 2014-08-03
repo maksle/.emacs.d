@@ -53,6 +53,7 @@
 
 ;; Make shell more convenient
 (global-set-key (kbd "C-z") 'shell)
+(global-set-key (kbd "C-Z") 'eshell)
 
 ;; (global-set-key (kbd "M-h") 'kill-region-or-backward-word)
 
