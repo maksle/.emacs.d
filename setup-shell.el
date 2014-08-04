@@ -9,17 +9,18 @@
           (lambda ()
             (define-key shell-mode-map (kbd "C-d") 'comint-delchar-or-eof-or-kill-buffer)))
 
+
 (when (or (eq system-type "cygwin") (eq system-type "windows-nt"))
   (add-hook 'comint-output-filter-functions 'shell-strip-ctrl-m nil t)
   (add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt nil t)
+  (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)    
   (add-hook 'comint-output-filter-functions 'ansi-color-process-output nil t)
-  (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
-
+  
   (setq ansi-color-names-vector
         ["black" "red" "green" "yellow"
          "#729fcf" "magenta" "cyan" "white"])
   (setq ansi-color-map (ansi-color-make-color-map))
-
+  
   ;; enable super and hyper keys on windows
   (setq w32-pass-lwindow-to-system nil
         w32-pass-rwindow-to-system nil
