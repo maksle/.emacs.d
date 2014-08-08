@@ -1,7 +1,8 @@
-(add-hook 'c-mode-common-hook
-          (lambda ()
-            (when (derived-mode-p 'c-mode 'c++-mode 'csharp-mode)
-              (ggtags-mode 1))))
+(when (executable-find "gtags")
+  (add-hook 'c-mode-common-hook
+            (lambda ()
+              (when (derived-mode-p 'c-mode 'c++-mode 'csharp-mode)
+                (ggtags-mode 1)))))
 
 ;; C#
 (add-hook  'csharp-mode-hook

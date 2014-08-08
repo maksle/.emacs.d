@@ -171,11 +171,19 @@
 (autoload 'elisp-slime-nav-mode "elisp-slime-nav")
 (add-hook 'emacs-lisp-mode-hook (lambda () (elisp-slime-nav-mode t) (eldoc-mode 1)))
 
+;; Dir tree like NERD for vim
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
+
 ;; Setup key bindings
 (require 'key-bindings)
 
-;; Conclude init by setting up specifics for the current user
+;; Emacs server
+(require 'server)
+(unless (server-running-p)
+  (server-start))
 
+;; Conclude init by setting up specifics for the current user
 ;; Settings for currently logged in user
 (setq user-settings-dir
       (concat user-emacs-directory "users/" user-login-name))
