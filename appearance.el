@@ -11,7 +11,7 @@
 ;; (set-default-font "-outline-DejaVu Sans Mono-normal-normal-normal-mono-15-*-*-*-c-*-iso8859-1")
 ;; (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-11.5"))
 (add-to-list 'default-frame-alist '(font . "Inconsolata-13.5"))
-(set-face-attribute 'default nil :font "Inconsolata-13.5")
+;; (set-face-attribute 'default nil :font "Inconsolata-13.5")
 ;; (set-face-attribute 'default nil :font "Source Code Pro-11")
 ;; (set-face-attribute 'default nil :height 115 :font "DejaVu Sans Mono-11.5")
 
@@ -36,7 +36,7 @@
 
 (defun toggle-presentation-mode ()
   (interactive)
-  (if (string= (frame-parameter nil 'font) "-unknown-Inconsolata-normal-normal-normal-*-14-*-*-*-m-0-iso10646-1")
+  (if (member 'default-black custom-enabled-themes)
       (use-presentation-theme)
     (use-default-theme)))
 

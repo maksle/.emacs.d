@@ -108,12 +108,12 @@
 ;; Keep cursor away from edges when scrolling up/down
 (require 'smooth-scrolling)
 
-(put 'scroll-left 'disabled nil)
-
 ;; Run at full power please
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)
+(put 'dired-find-alternate-file 'disabled nil)
+(put 'scroll-left 'disabled nil)
 
 ;; Allow recursive minibuffers
 (setq enable-recursive-minibuffers t)
