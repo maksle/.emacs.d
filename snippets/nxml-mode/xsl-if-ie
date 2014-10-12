@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: [if IE]>
+# key: ifie
+# --
+<xsl:comment><![CDATA[[if lt IE $1]>$0<![endif]]]></xsl:comment>

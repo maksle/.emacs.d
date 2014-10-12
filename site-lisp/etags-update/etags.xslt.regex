@@ -1,0 +1,5 @@
+--landdef=xslt
+--langmap=xslt:.xsl
+--regex-xlst=/.*<xsl:template name="\([^"]*\)"/\1/
+--regex-xlst=/.*<xsl:template match="[^"]*"[ \t\n]+mode="\([^"]*\)"/\1/
+--regex-xlst=/.*<xsl:variable name="\([^"]+\)"/\1/

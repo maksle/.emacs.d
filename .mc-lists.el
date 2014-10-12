@@ -3,8 +3,13 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        c-electric-colon
+        c-electric-delete-forward
+        c-electric-paren
+        c-electric-semi&comma
         comment-line-dwim
         forward-sentence
+        hippie-expand-no-case-fold
         isearch-forward-use-region
         kill-region
         move-text-up
@@ -15,7 +20,10 @@
         perl-electric-terminator
         save-region-or-current-line
         shell
+        sp--self-insert-command
+        sp-forward-slurp-sexp
         yas-expand
+        yas-next-field-or-maybe-expand
         ))
 
 (setq mc/cmds-to-run-once
