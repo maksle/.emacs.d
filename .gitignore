@@ -10,3 +10,7 @@ history
 elpa
 tramp
 eshell
+semanticdb
+bookmarks
+custom.el
+.cask
