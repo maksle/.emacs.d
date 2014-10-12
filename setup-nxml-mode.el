@@ -3,6 +3,10 @@
             (setq
              nxml-child-indent 4
              nxml-outline-child-indent 2)
+            (when (string-match-p "/learn/xslt" (buffer-file-name))
+                  (visit-tags-table "~/Documents/learn/xslt/TAGS"  t)
+                  (require 'etags-update)
+                  (etags-update-mode))
             (define-key nxml-mode-map (kbd "C-c f") 'nxml-reformat-xml)
             (define-key nxml-mode-map (kbd "C-c w") 'nxml-where)))
 
@@ -18,3 +22,5 @@
 
 
 (provide 'setup-nxml-mode)
+
+

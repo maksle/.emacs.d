@@ -50,6 +50,7 @@
      elisp-slime-nav
      flx-ido
      geben
+     geiser
      ggtags
      guide-key
      highlight-escape-sequences
@@ -103,8 +104,12 @@
 (sp-use-paredit-bindings)
 (--each '(css-mode-hook
           emacs-lisp-mode-hook
+          c++-mode-hook
+          geiser-repl-mode-hook
+          scheme-mode-hook
           perl-mode-hook
           js-mode-hook
+          python-mode-hook
           ruby-mode
           markdown-mode)
   (add-hook it 'turn-on-smartparens-mode))
@@ -115,6 +120,10 @@
 (eval-after-load 'nxml-mode '(require 'setup-nxml-mode))
 (eval-after-load 'css-mode '(require 'setup-css))
 (eval-after-load 'less-css-mode '(require 'setup-less-mode))
+(eval-after-load "erc" '(require 'setup-irc))
+
+(require 'quack)
+
 (require 'setup-c-modes)
 
 (require 'mode-mappings)

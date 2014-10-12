@@ -37,7 +37,7 @@
 
 (defun file-name-at-point ()
   (save-excursion
-    (let* ((file-name-regexp "[./a-zA-Z0-9\-_~]")
+    (let* ((file-name-regexp "[./a-zA-Z0-9\-_~:\\]")
            (start (progn
                     (while (looking-back file-name-regexp)
                       (forward-char -1))
