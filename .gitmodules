@@ -73,3 +73,6 @@
 [submodule "site-lisp/etags-update"]
 	path = site-lisp/etags-update
 	url = git@github.com:maksle/etags-update.git
+[submodule "site-lisp/xslt-dep"]
+	path = site-lisp/xslt-dep
+	url = git@github.com:maksle/xslt-dependencies
