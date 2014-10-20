@@ -33,7 +33,7 @@
 	url = https://github.com/magnars/dash.el.git
 [submodule "site-lisp/tagedit"]
 	path = site-lisp/tagedit
-	url = https://github.com/magnars/tagedit.git
+	url = git@github.com:magnars/tagedit
 [submodule "site-lisp/fold-this"]
 	path = site-lisp/fold-this
 	url = https://github.com/magnars/fold-this.el.git
