@@ -8,6 +8,7 @@
         c-electric-paren
         c-electric-semi&comma
         comment-line-dwim
+        electric-newline-and-maybe-indent
         forward-sentence
         hippie-expand-no-case-fold
         isearch-forward-use-region

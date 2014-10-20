@@ -9,8 +9,8 @@
    nxml-child-indent 4
    nxml-outline-child-indent 2)
 
-  (when (string-match-p "/learn/xslt" (buffer-file-name))
-    (visit-tags-table "~/Documents/learn/xslt/TAGS"  t)
+  (when (string-match-p "/cygdrive/c/usr/netscape/server/docs/" (buffer-file-name))
+    (visit-tags-table "/cygdrive/c/usr/netscape/server/docs/TAGS"  t)
     (require 'etags-update)
     (etags-update-mode))
 
@@ -20,7 +20,11 @@
   (--setup-simplezen)
 
   (define-key nxml-mode-map (kbd "C-c f") 'nxml-reformat-xml)
-  (define-key nxml-mode-map (kbd "C-c w") 'nxml-where))
+  (define-key nxml-mode-map (kbd "C-c w") 'nxml-where)
+
+  (tagedit-mode)
+  (require 'tagedit-nxml)
+  (enable-tagedit-nxml))
 
 (add-hook 'nxml-mode-hook 'my-nxml-mode-hook)
 
@@ -28,5 +32,3 @@
 ;; (setq sgml-basic-offset 4)
 
 (provide 'setup-nxml-mode)
-
-

@@ -36,6 +36,7 @@
   (find-file-other-window (file-name-at-point)))
 
 (defun file-name-at-point ()
+  (interactive)
   (save-excursion
     (let* ((file-name-regexp "[./a-zA-Z0-9\-_~:\\]")
            (start (progn
@@ -46,6 +47,6 @@
                   (while (looking-at file-name-regexp)
                     (forward-char 1))
                   (point))))
-      (buffer-substring start end))))
+      (cygwin-convert-file-name-from-windows (buffer-substring start end)))))
 
 (provide 'file-defuns)
