@@ -20,7 +20,13 @@
   (--setup-simplezen)
 
   (define-key nxml-mode-map (kbd "C-c f") 'nxml-reformat-xml)
-  (define-key nxml-mode-map (kbd "C-c w") 'nxml-where))
+  (define-key nxml-mode-map (kbd "C-c w") 'nxml-where)
+
+  (require 'tagedit)
+
+  (tagedit-mode)
+  (require 'tagedit-nxml)
+  (enable-tagedit-nxml))
 
 (add-hook 'nxml-mode-hook 'my-nxml-mode-hook)
 
