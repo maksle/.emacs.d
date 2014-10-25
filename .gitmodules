@@ -76,3 +76,6 @@
 [submodule "site-lisp/xslt-dep"]
 	path = site-lisp/xslt-dep
 	url = git@github.com:maksle/xslt-dependencies
+[submodule "site-lisp/tagedit-nxml"]
+	path = site-lisp/tagedit-nxml
+	url = git@github.com:maksle/tagedit-nxml
