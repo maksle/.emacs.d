@@ -116,7 +116,7 @@
           ruby-mode
           markdown-mode)
   (add-hook it 'turn-on-smartparens-mode))
-(show-smartparens-global-mode +1)
+;; (show-smartparens-global-mode +1)
 
 ;; Language specific setup files
 (eval-after-load 'js2-mode '(require 'setup-js2-mode))
@@ -170,6 +170,8 @@
 ;; anzu-mode enhances isearch by showing total matches and current match position
 (require 'anzu)
 (global-anzu-mode)
+(global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp)
+(global-set-key [remap query-replace] 'anzu-query-replace)
 
 ;; Fill column indicator
 (require 'fill-column-indicator)

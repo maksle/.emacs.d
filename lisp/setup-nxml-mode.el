@@ -24,7 +24,8 @@
 
   (tagedit-mode)
   (require 'tagedit-nxml)
-  (enable-tagedit-nxml))
+  (enable-tagedit-nxml)
+  (tagedit-add-paredit-like-keybindings))
 
 (add-hook 'nxml-mode-hook 'my-nxml-mode-hook)
 

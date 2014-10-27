@@ -1,1 +1,0 @@
-("~/.emacs.d/site-lisp/tagedit/" "~/.emacs.d/" "~/.emacs.d/site-lisp/tagedit-nxml/" "/cygdrive/c/Users/xls/src/prog/alacraisapifilter/" "~/.emacs.d/site-lisp/etags-update/")

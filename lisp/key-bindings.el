@@ -204,4 +204,7 @@
 ;; discover my major
 (global-set-key (kbd "<f1> C-m") 'discover-my-major)
 
+;; tagedit
+
+
 (provide 'key-bindings)

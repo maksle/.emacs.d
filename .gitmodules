@@ -76,3 +76,6 @@
 [submodule "site-lisp/tagedit-nxml"]
 	path = site-lisp/tagedit-nxml
 	url = git@github.com:maksle/tagedit-nxml.el
+[submodule "tagedit"]
+	path = site-lisp/tagedit
+	url = git@github.com:magnars/tagedit
