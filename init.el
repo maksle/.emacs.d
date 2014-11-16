@@ -60,6 +60,7 @@
      magit
      move-text
      php-mode
+     projectile
      quack
      rainbow-mode
      shell-command
