@@ -192,6 +192,8 @@
 (unless (server-running-p)
   (server-start))
 
+(require 'setup-god-mode)
+
 ;; Conclude init by setting up specifics for the current user
 ;; Settings for currently logged in user
 (setq user-settings-dir
