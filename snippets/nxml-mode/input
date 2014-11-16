@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: input
+# key: input
+# binding: direct-keybinding
+# --
+<input type="$1" name="$2" $0/>

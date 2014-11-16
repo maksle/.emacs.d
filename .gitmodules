@@ -31,9 +31,6 @@
 [submodule "site-lisp/dash"]
 	path = site-lisp/dash
 	url = https://github.com/magnars/dash.el.git
-[submodule "site-lisp/tagedit"]
-	path = site-lisp/tagedit
-	url = https://github.com/magnars/tagedit.git
 [submodule "site-lisp/fold-this"]
 	path = site-lisp/fold-this
 	url = https://github.com/magnars/fold-this.el.git
@@ -70,12 +67,15 @@
 [submodule "site-lisp/neotree"]
 	path = site-lisp/neotree
 	url = https://github.com/jaypei/emacs-neotree.git
-[submodule "site-lisp/etags-update"]
-	path = site-lisp/etags-update
-	url = git@github.com:maksle/etags-update.git
 [submodule "site-lisp/xslt-dep"]
 	path = site-lisp/xslt-dep
 	url = git@github.com:maksle/xslt-dependencies
+[submodule "site-lisp/etags-update"]
+	path = site-lisp/etags-update
+	url = git@github.com:maksle/etags-update
 [submodule "site-lisp/tagedit-nxml"]
 	path = site-lisp/tagedit-nxml
-	url = git@github.com:maksle/tagedit-nxml
+	url = git@github.com:maksle/tagedit-nxml.el
+[submodule "tagedit"]
+	path = site-lisp/tagedit
+	url = git@github.com:magnars/tagedit

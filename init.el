@@ -1,3 +1,4 @@
+
 ;; Turn off mouse interface early in startup to avoid momentary display
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -9,17 +10,18 @@
 ;; Set path to dependencies
 (setq site-lisp-dir
       (expand-file-name "site-lisp" user-emacs-directory))
+(setq my-lisp-dir
+      (expand-file-name "lisp" user-emacs-directory))
 
 ;; Set up load path
-(add-to-list 'load-path user-emacs-directory)
+(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (add-to-list 'load-path site-lisp-dir)
-
 (add-to-list 'load-path (expand-file-name "elpa" user-emacs-directory))
 (let ((default-directory "~/.emacs.d/elpa/"))
   (normal-top-level-add-subdirs-to-load-path))
 
 ;; Keep emacs Custom-settings in separate file
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(setq custom-file (expand-file-name "custom.el" my-lisp-dir))
 (load custom-file)
 
 ;; Set up appearance early
@@ -58,6 +60,7 @@
      magit
      move-text
      php-mode
+     quack
      rainbow-mode
      shell-command
      smooth-scrolling
@@ -113,17 +116,18 @@
           ruby-mode
           markdown-mode)
   (add-hook it 'turn-on-smartparens-mode))
-(show-smartparens-global-mode +1)
+;; (show-smartparens-global-mode +1)
 
 ;; Language specific setup files
 (eval-after-load 'js2-mode '(require 'setup-js2-mode))
-(eval-after-load 'nxml-mode '(require 'setup-nxml-mode))
+;; (eval-after-load 'nxml-mode '(require 'setup-nxml-mode))
 (eval-after-load 'css-mode '(require 'setup-css))
 (eval-after-load 'less-css-mode '(require 'setup-less-mode))
 (eval-after-load "erc" '(require 'setup-irc))
 
 (require 'quack)
 
+(require 'setup-nxml-mode)
 (require 'setup-c-modes)
 
 (require 'mode-mappings)
@@ -134,7 +138,7 @@
 (put 'font-lock-regexp-grouping-backslash 'face-alias 'font-lock-builtin-face)
 
 (require 'guide-key)
-(setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-x v" "C-x 8" "C-x C-k" "<f1>"))
+(setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-x v" "C-x 8" "C-x C-k" "<f1>" "C-c p"))
 (guide-key-mode 1)
 (setq guide-key/recursive-key-sequence-flag t)
 (setq guide-key/popup-window-position 'bottom)
@@ -142,7 +146,7 @@
 (setq guide-key/idle-delay 0.07)
 
 ;; Functions (load all files in defuns-dir)
-(setq defuns-dir (expand-file-name "defuns" user-emacs-directory))
+(setq defuns-dir (expand-file-name "defuns" my-lisp-dir))
 (dolist (file (directory-files defuns-dir t "\\w+"))
   (when (file-regular-p file)
     (load file)))
@@ -151,6 +155,9 @@
 (require 'multiple-cursors)
 (require 'smart-forward)
 (require 'wgrep)
+
+;; project management
+(projectile-global-mode)
 
 ;; Fill column indicator
 (require 'fill-column-indicator)
@@ -163,6 +170,8 @@
 ;; anzu-mode enhances isearch by showing total matches and current match position
 (require 'anzu)
 (global-anzu-mode)
+(global-set-key [remap query-replace-regexp] 'anzu-query-replace-regexp)
+(global-set-key [remap query-replace] 'anzu-query-replace)
 
 ;; Fill column indicator
 (require 'fill-column-indicator)
