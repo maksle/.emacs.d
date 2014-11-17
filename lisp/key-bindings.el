@@ -49,7 +49,6 @@
 ;; Use shell-like backspace C-h, rebind help to F1
 (define-key key-translation-map [?\C-h] [?\C-?])
 (global-set-key (kbd "<f1>") 'help-command)
-;; (define-key god-local-mode-map (kbd "h") 'backward-delete-char)
 
 ;; Make shell more convenient
 (global-set-key (kbd "C-z") 'shell)

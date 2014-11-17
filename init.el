@@ -125,10 +125,16 @@
 (eval-after-load 'less-css-mode '(require 'setup-less-mode))
 (eval-after-load "erc" '(require 'setup-irc))
 
+;; fix (un)commenting of comments
+(require 'mz-comment-fix)
+(add-to-list 'comment-strip-start-length (cons 'nxml-mode 3))
+
 (require 'quack)
 
+(require 'setup-sql)
 (require 'setup-nxml-mode)
 (require 'setup-c-modes)
+(require 'setup-god-mode)
 
 (require 'mode-mappings)
 

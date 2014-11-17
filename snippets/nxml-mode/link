@@ -3,4 +3,4 @@
 # key: link
 # binding: direct-keybinding
 # --
-<link href="$1" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="$1" type="text/css"/>
