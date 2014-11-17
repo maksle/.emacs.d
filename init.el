@@ -60,6 +60,7 @@
      magit
      move-text
      php-mode
+     projectile
      quack
      rainbow-mode
      shell-command
@@ -206,6 +207,8 @@
 (require 'server)
 (unless (server-running-p)
   (server-start))
+
+(require 'setup-god-mode)
 
 ;; Conclude init by setting up specifics for the current user
 ;; Settings for currently logged in user

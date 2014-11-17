@@ -1,3 +1,4 @@
+
 (defun --setup-simplezen ()
   (require 'simplezen)
   (set (make-local-variable 'yas-fallback-behavior)
@@ -37,3 +38,4 @@
 ;; (setq sgml-basic-offset 4)
 
 (provide 'setup-nxml-mode)
+
