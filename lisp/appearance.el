@@ -9,11 +9,25 @@
 ;; set font
 ;; default font
 ;; (set-default-font "-outline-DejaVu Sans Mono-normal-normal-normal-mono-15-*-*-*-c-*-iso8859-1")
+(if (member "Inconsolata" (font-family-list))
+    (progn (set-frame-font "Inconsolata")
+           (set-face-attribute :height 135))
+  (set-frame-font "Bitstream Vera Sans Mono")
+  (set-face-attribute 'default nil :height 115))
+
+;; (set-frame-font "Bitstream Vera Sans Mono")
+;; (set-face-attribute 'default nil :height 100)
+
+;; (set-frame-font "dejavu sans mono")
 ;; (add-to-list 'default-frame-alist '(font . "DejaVu Sans Mono-11.5"))
-(add-to-list 'default-frame-alist '(font . "Inconsolata-13.5"))
+;; (add-to-list 'default-frame-alist '(font . "Inconsolata-13.5"))
 ;; (set-face-attribute 'default nil :font "Inconsolata-13.5")
 ;; (set-face-attribute 'default nil :font "Source Code Pro-11")
-;; (set-face-attribute 'default nil :height 115 :font "DejaVu Sans Mono-11.5")
+;; (set-face-attribute 'default nil :height 80 :font "-misc-dejavu sans mono-medium-r-normal--0-0-0-0-m-0-ascii-0")
+;; (set-face-attribute 'default nil :height 150 :font "-misc-inconsolata-medium-r-normal-*-18-*-*-*-m-0-iso8859-1")
+;; (set-face-attribute 'default nil :font "-bitstream-Bitstream Vera Sans Mono-normal-normal-normal-*-15-*-*-*-m-0-iso10646-1")
+;; (set-face-attribute 'default nil :height 120 :font "-misc-dejavu sans mono-medium-r-normal-*-16-*-*-*-m-0-iso8859-1")
+
 
 ;; Set custom theme path
 (setq custom-theme-directory (concat user-emacs-directory "themes"))

@@ -32,5 +32,6 @@
 
 ;; nxml
 (add-to-list 'auto-mode-alist '("\\.fo\\'" . nxml-mode))
+(add-to-list 'auto-mode-alist '("\\.xslt\\'" . nxml-mode))
 
 (provide 'mode-mappings)

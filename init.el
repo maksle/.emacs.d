@@ -208,6 +208,9 @@
 (unless (server-running-p)
   (server-start))
 
+;; Tramp:
+(setq password-cache-expiry nil)
+
 (require 'setup-god-mode)
 
 ;; Conclude init by setting up specifics for the current user

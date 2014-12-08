@@ -1,5 +1,13 @@
 (require 'imenu)
 
+(defun unix-file ()
+  (interactive)
+  (set-buffer-file-coding-system 'utf-8-unix t))
+
+(defun dos-file ()
+  (interactive)
+  (set-buffer-file-coding-system 'iso-8859-1-dos t))
+
 (defun split-window-right-and-move-there-dammit ()
   (interactive)
   (split-window-right)

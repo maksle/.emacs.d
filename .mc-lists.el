@@ -3,6 +3,7 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+        backward-delete-char
         c-electric-colon
         c-electric-delete-forward
         c-electric-paren
@@ -10,6 +11,8 @@
         comment-line-dwim
         electric-newline-and-maybe-indent
         forward-sentence
+        god-local-mode
+        god-mode-all
         hippie-expand-no-case-fold
         isearch-forward-use-region
         kill-region
@@ -30,6 +33,7 @@
 (setq mc/cmds-to-run-once
       '(
         end-of-buffer
+        eshell-previous-matching-input-from-input
         ido-switch-buffer
         ignore
         isearch-backward-use-region

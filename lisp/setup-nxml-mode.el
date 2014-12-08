@@ -5,7 +5,7 @@
        '(apply simplezen-expand-or-indent-for-tab)))
 
 ;; Finally, prompt the user for a file name.
-(setq default-tags-table-function (expand-file-name "/cygdrive/c/usr/netscape/server/docs/TAGS"))
+
 
 (defun my-nxml-mode-hook ()
   (setq
@@ -16,6 +16,7 @@
   (when (and (string-match-p "/cygdrive/c/usr/netscape/server/docs/" (buffer-file-name))
              (not (equal default-directory "/cygdrive/c/usr/netscape/server/docs/tmp/")))
     (visit-tags-table "/cygdrive/c/usr/netscape/server/docs/TAGS"  t)
+    (set (make-local-variable 'default-tags-table-function) (lambda () (expand-file-name "/cygdrive/c/usr/netscape/server/docs/TAGS")))
     (require 'etags-update)
     (etags-update-mode))
 
