@@ -16,11 +16,17 @@
 ;; Set up load path
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (add-to-list 'load-path site-lisp-dir)
+(let ((dir (expand-file-name "elpa" user-emacs-directory)))
+  (unless (file-exists-p dir)
+    (make-directory dir)))
 (add-to-list 'load-path (expand-file-name "elpa" user-emacs-directory))
 (let ((default-directory "~/.emacs.d/elpa/"))
   (normal-top-level-add-subdirs-to-load-path))
 
 ;; Keep emacs Custom-settings in separate file
+(let ((cust (expand-file-name "custom.el" my-lisp-dir)))
+  (unless (file-exists-p cust)
+    (write-region "" nil cust)))
 (setq custom-file (expand-file-name "custom.el" my-lisp-dir))
 (load custom-file)
 
@@ -54,6 +60,7 @@
      geben
      geiser
      ggtags
+     god-mode
      guide-key
      highlight-escape-sequences
      less-css-mode
