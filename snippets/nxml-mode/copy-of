@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: copy-of
+# key: co
+# binding: direct-keybinding
+# --
+<xsl:copy-of select="$0"/>

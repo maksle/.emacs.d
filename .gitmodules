@@ -1,9 +1,6 @@
 [submodule "site-lisp/js2-mode"]
 	path = site-lisp/js2-mode
 	url = https://github.com/magnars/js2-mode
-[submodule "site-lisp/expand-region"]
-	path = site-lisp/expand-region
-	url = https://github.com/magnars/expand-region.el.git
 [submodule "site-lisp/php-mode"]
 	path = site-lisp/php-mode
 	url = https://github.com/ejmr/php-mode.git
@@ -79,3 +76,6 @@
 [submodule "tagedit"]
 	path = site-lisp/tagedit
 	url = git@github.com:magnars/tagedit
+[submodule "site-lisp/expand-region"]
+	path = site-lisp/expand-region
+	url = git@github.com:magnars/expand-region.el

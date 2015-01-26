@@ -276,15 +276,17 @@ and the file beginning (or not beginning) with a delimeter."
 
 (defun ss-external-filename (f)
   "Converts a filename to a Windows filename."
-  (ss-replace-all
-   (or (apply (cond ((fboundp 'win32-long-file-name) ;in emacs 19.34.4
-                     'win32-long-file-name)
-                    ((fboundp 'w32-long-file-name) ;in emacs 20
-                     'w32-long-file-name)
-                    (t 'identity))
-              (list f))
-       f)
-   "/" "\\"))
+  ;; (ss-replace-all
+  ;;  (or (apply (cond ((fboundp 'win32-long-file-name) ;in emacs 19.34.4
+  ;;                    'win32-long-file-name)
+  ;;                   ((fboundp 'w32-long-file-name) ;in emacs 20
+  ;;                    'w32-long-file-name)
+  ;;                   (t 'identity))
+  ;;             (list f))
+  ;;      f)
+  ;;  "/" "\\")
+  (cygwin-convert-file-name-to-windows f t)
+  )
 
 (defun ss-file-basename (f)
   "Strips of any leading directories and drives from the filename
@@ -313,7 +315,8 @@ If there is no drive, return NIL."
 (defun ss-canonicalize-dirspec-assoc (dirspec)
   (let ((dir (car dirspec))
         (proj (cdr dirspec)))
-    (cons (ss-replace-all dir "/" "\\\\")
+    ;; (cons (ss-replace-all dir "/" "\\\\")
+    (cons (ss-replace-all dir "/" "/")
           proj)))
 
 (defvar ss-project-dirs-cache nil
@@ -371,7 +374,8 @@ If you change that variable, you should reset this var to NIL.")
         ;; So, if we can, try to use the directory "\temp"
         ;; on the same drive as the file.
         (if (string-match "^[a-zA-Z]:" f)
-            (setq tmp-dir (concat (substring f 0 2) "\\temp"))))
+            ;; (setq tmp-dir (concat (substring f 0 2) "\\temp"))))
+            (setq tmp-dir (concat (substring f 0 2) "/temp"))))
     (if (null tmp-dir)
         ;; That didn't work, so use a dir in the parent dir
         ;; (not this dir, due to the above mentioned problem).
@@ -379,7 +383,7 @@ If you change that variable, you should reset this var to NIL.")
     ;; Now that we have a tmp-dir, create a dir in it for our own use.
     (if (not (file-exists-p tmp-dir))
         (make-directory tmp-dir))
-    (setq tmp-dir (tmp-dir "emacstmp"))
+    ;; (setq tmp-dir (tmp-dir "emacstmp"))
     (if (not (file-exists-p tmp-dir))
         (make-directory tmp-dir))
     tmp-dir))
@@ -1651,6 +1655,9 @@ If given a prefix argument, merge in the changes without checking out the file."
         (tmpfile (ss-tmp-file "ssstatus.txt")))
     (ss-do-command "STATUS" f nil
                    (concat "-O@" (ss-external-filename tmpfile)))
+    (message "got here 1")
+    ;; (message tmpfile)
+    ;; (message (file-exists-p tmpfile))
     (if (file-exists-p tmpfile)
         (progn
           (pop-to-buffer "*SS Status*")

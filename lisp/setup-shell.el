@@ -18,11 +18,13 @@
 ;; (setq ansi-color-map (ansi-color-make-color-map))   
 
 
-(when (or (eq system-type "cygwin") (eq system-type "windows-nt"))
+(when (or (eq system-type `cygwin) (eq system-type `windows-nt))
   (add-hook 'comint-output-filter-functions 'shell-strip-ctrl-m nil t)
   (add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt nil t)
   (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
   (add-hook 'comint-output-filter-functions 'ansi-color-process-output nil t)
+  (add-hook 'shell-mode-hook 'god-mode)
+  (setq explicit-bash-args '("--login" "-i"))
 
   ;; enable super and hyper keys on windows
   (setq w32-pass-lwindow-to-system nil

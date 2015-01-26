@@ -34,6 +34,7 @@
       '(
         end-of-buffer
         eshell-previous-matching-input-from-input
+        god-mode-self-insert
         ido-switch-buffer
         ignore
         isearch-backward-use-region
