@@ -64,6 +64,7 @@
      guide-key
      highlight-escape-sequences
      less-css-mode
+     let-alist
      magit
      move-text
      php-mode
