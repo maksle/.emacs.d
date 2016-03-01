@@ -48,34 +48,56 @@
 ;; Install extensions if they're missing
 (defun init--install-packages ()
   (packages-install
-   '(anzu
+   '(ace-jump-mode
+     anzu
      apache-mode
      auto-complete
+     bash-completion
+     browse-kill-ring
      change-inner
      csharp-mode
      css-eldoc
+     dash
      discover-my-major
      elisp-slime-nav
+     expand-region
+     f
+     fill-column-indicator
      flx-ido
+     flycheck
+     fold-this
      geben
      geiser
      ggtags
      god-mode
      guide-key
      highlight-escape-sequences
+     ido-vertical-mode
+     ido-ubiquitous
+     js2-mode
+     js2-refactor
      less-css-mode
      let-alist
      magit
      move-text
+     multiple-cursors
+     neotree
      php-mode
      projectile
      quack
      rainbow-mode
      shell-command
+     s
+     simplezen
+     smart-forward
+     smex
      smooth-scrolling
      smartparens
+     tagedit
+     tern
      volatile-highlights
      web-mode
+     wgrep
      yasnippet
      )))
 
@@ -86,6 +108,12 @@
    (init--install-packages)))
 
 (require 'sane-defaults)
+
+;; Functions (load all files in defuns-dir)
+(setq defuns-dir (expand-file-name "defuns" my-lisp-dir))
+(dolist (file (directory-files defuns-dir t "\\w+"))
+  (when (file-regular-p file)
+    (load file)))
 
 ;; Load stuff on demand
 (autoload 'flycheck-mode "setup-flycheck" nil t)
@@ -159,12 +187,6 @@
 (setq guide-key/popup-window-position 'bottom)
 (setq guide-key/highlight-command-regexp "rectangle")
 (setq guide-key/idle-delay 0.07)
-
-;; Functions (load all files in defuns-dir)
-(setq defuns-dir (expand-file-name "defuns" my-lisp-dir))
-(dolist (file (directory-files defuns-dir t "\\w+"))
-  (when (file-regular-p file)
-    (load file)))
 
 (require 'expand-region)
 (require 'multiple-cursors)

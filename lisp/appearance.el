@@ -12,8 +12,9 @@
 (if (member "Inconsolata" (font-family-list))
     (progn (set-frame-font "Inconsolata")
            (set-face-attribute :height 135))
-  (set-frame-font "Bitstream Vera Sans Mono")
-  (set-face-attribute 'default nil :height 115))
+)
+  ;; (set-frame-font "Bitstream Vera Sans Mono")
+  ;; (set-face-attribute 'default nil :height 115))
 
 ;; (set-frame-font "Bitstream Vera Sans Mono")
 ;; (set-face-attribute 'default nil :height 100)
