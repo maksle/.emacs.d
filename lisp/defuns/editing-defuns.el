@@ -214,6 +214,9 @@ If there's no region, the current line will be duplicated."
                 (kill-new path-string))
             path-string))))))
 
+(autoload 'zap-up-to-char "misc" 
+  "Kill up to, but not including ARGth occurrence of CHAR.")
+
 (defun css-expand-statement ()
   (interactive)
   (save-excursion

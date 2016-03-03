@@ -4,7 +4,6 @@
 (global-set-key (kbd "C-x C-c") 'delete-frame)
 
 ;; Completion that uses many different methods to find options.
-(global-set-key (kbd "C-/") 'hippie-expand)
 (global-set-key (kbd "C-.") 'hippie-expand-no-case-fold)
 (global-set-key (kbd "C-:") 'hippie-expand-lines)
 (global-set-key (kbd "C-,") 'completion-at-point)
@@ -16,7 +15,6 @@
 
 ;; Expand region (increases selected region by semantic units)
 (global-set-key (kbd "C-'") 'er/expand-region)
-
 
 ;; When you have an active region that spans multiple lines, the
 ;; following will add a cursor to each line:
@@ -72,6 +70,14 @@
 ;; Comment/uncomment line
 (global-set-key (kbd "C-M-;") 'comment-line-dwim)
 
+;; Comment/uncomment block
+(global-set-key (kbd "C-c c") 'comment-or-uncomment-region)
+(global-set-key (kbd "C-c u") 'uncomment-region)
+
+;; Zap to char
+(global-set-key (kbd "M-z") 'zap-up-to-char)
+(global-set-key (kbd "s-z") (lambda (char) (interactive "cZap up to char backwards: ") (zap-up-to-char -1 char)))
+
 ;; File finding
 (global-set-key (kbd "C-x M-f") 'ido-find-file-other-window)
 (global-set-key (kbd "C-x f") 'recentf-ido-find-file)
@@ -79,9 +85,14 @@
 (global-set-key (kbd "C-x C-p") 'find-or-create-file-at-point)
 (global-set-key (kbd "C-x M-p") 'find-or-create-file-at-point-other-window)
 (global-set-key (kbd "C-c y") 'bury-buffer)
+(global-set-key (kbd "s-y") 'bury-buffer)
 (global-set-key (kbd "C-c r") 'revert-buffer)
 (global-set-key (kbd "M-`") 'file-cache-minibuffer-complete)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
+
+;; toggle two most recent buffers
+(fset 'quick-switch-buffer [?\C-x ?b return])
+(global-set-key (kbd "s-b") 'quick-switch-buffer)
 
 ;; vim's ci and co commands
 (global-set-key (kbd "M-I") 'change-inner)
@@ -118,6 +129,10 @@
 
 ;; Should be able to eval-and-replace anywhere.
 (global-set-key (kbd "C-c C-e") 'eval-and-replace)
+
+;; Webjump let's you quickly search google, wikipedia, emacs wiki
+(global-set-key (kbd "C-x g") 'webjump)
+(global-set-key (kbd "C-x M-g") 'browse-url-at-point)
 
 ;; Navigation bindings
 (global-set-key [remap goto-line] 'goto-line-with-feedback)
@@ -165,6 +180,11 @@
 (global-set-key (kbd "<C-S-down>") 'move-text-down)
 (global-set-key (kbd "<C-S-up>") 'move-text-up)
 
+;; Fold the active region
+(global-set-key (kbd "C-c C-f") 'fold-this-all)
+(global-set-key (kbd "C-c C-F") 'fold-this)
+(global-set-key (kbd "C-c M-f") 'fold-this-unfold-all)
+
 ;; Toggle quotes
 (global-set-key (kbd "C-\"") 'toggle-quotes)
 
@@ -176,6 +196,9 @@
 
 ;; Buffer file functions
 (global-set-key (kbd "C-x C-r") 'rename-current-buffer-file)
+
+;; Jump from file to containing directory
+(global-set-key (kbd "C-x C-j") 'dired-jump) (autoload 'dired-jump "dired")
 
 ;; Magit
 (global-set-key (kbd "C-x m") 'magit-status)

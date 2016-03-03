@@ -55,7 +55,8 @@
          (looking-at (regexp-quote close)))
     (forward-char (length close)))
 
-   ((js2-mode-inside-comment-or-string)
+   ((and (er--point-inside-string-p)
+         (er--point-is-in-comment-p))
     (funcall 'self-insert-command 1))
 
    (:else
@@ -85,6 +86,7 @@
         (looking-at "for ")
         (looking-at "while ")
         (looking-at "try ")
+        (looking-at "} catch ")
         (looking-at "} else "))))
 
 (defun js2r--comma-unless (delimiter)
@@ -150,25 +152,30 @@
 (define-key js2-mode-map (kbd "C-x C-r") 'js2r-rename-current-buffer-file)
 (define-key js2-mode-map (kbd "C-x C-k") 'js2r-delete-current-buffer-file)
 
-;; Use lambda for anonymous functions
-(font-lock-add-keywords
- 'js2-mode `(("\\(function\\) *("
-              (0 (progn (compose-region (match-beginning 1)
-                                        (match-end 1) "\u0192")
-                        nil)))))
+(define-key js2-mode-map (kbd "C-k") 'js2r-kill)
 
-;; Use right arrow for return in one-line functions
-(font-lock-add-keywords
- 'js2-mode `(("function *([^)]*) *{ *\\(return\\) "
-              (0 (progn (compose-region (match-beginning 1)
-                                        (match-end 1) "\u2190")
-                        nil)))))
+(define-key js2-mode-map (kbd "M-j") (lam (join-line -1)))
+
+(comment ;; avoid confusing shorthands
+ ;; Use lambda for anonymous functions
+ (font-lock-add-keywords
+  'js2-mode `(("\\(function\\) *("
+               (0 (progn (compose-region (match-beginning 1)
+                                         (match-end 1) "\u0192")
+                         nil)))))
+
+ ;; Use right arrow for return in one-line functions
+ (font-lock-add-keywords
+  'js2-mode `(("function *([^)]*) *{ *\\(return\\) "
+               (0 (progn (compose-region (match-beginning 1)
+                                         (match-end 1) "\u2190")
+                         nil))))))
 
 ;; After js2 has parsed a js file, we look for jslint globals decl comment ("/* global Fred, _, Harry */") and
 ;; add any symbols to a buffer-local var of acceptable global vars
 ;; Note that we also support the "symbol: true" way of specifying names via a hack (remove any ":true"
 ;; to make it look like a plain decl, and any ':false' are left behind so they'll effectively be ignored as
-;; you can;t have a symbol called "someName:false"
+;; you can't have a symbol called "someName:false"
 (add-hook 'js2-post-parse-callbacks
           (lambda ()
             (when (> (buffer-size) 0)

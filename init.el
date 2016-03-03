@@ -72,6 +72,7 @@
      god-mode
      guide-key
      highlight-escape-sequences
+     ido-at-point
      ido-vertical-mode
      ido-ubiquitous
      js2-mode
@@ -181,7 +182,7 @@
 (put 'font-lock-regexp-grouping-backslash 'face-alias 'font-lock-builtin-face)
 
 (require 'guide-key)
-(setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-x v" "C-x 8" "C-x C-k" "<f1>" "C-c p"))
+(setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-x v" "C-x 8" "C-x C-k" "<f1>" "C-c p" "C-c C-m"))
 (guide-key-mode 1)
 (setq guide-key/recursive-key-sequence-flag t)
 (setq guide-key/popup-window-position 'bottom)

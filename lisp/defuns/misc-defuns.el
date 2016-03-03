@@ -41,32 +41,11 @@
         (call-interactively 'goto-line))
     (linum-mode -1)))
 
-(defun url-get-qs (url)
-  (let* ((urlobj (url-generic-parse-url url))
-       (filename (url-filename urlobj))
-       (qs-obj (cdr (s-split "?" filename))))
-  (if qs-obj
-      (url-parse-query-string (car qs-obj)))))
+;; (defun url-get-qs (url)
+;;   (let* ((urlobj (url-generic-parse-url url))
+;;        (filename (url-filename urlobj))
+;;        (qs-obj (cdr (s-split "?" filename))))
+;;   (if qs-obj
+;;       (url-parse-query-string (car qs-obj)))))
 
-(defun form-amt-where-from-url-at-point ()
-  (interactive)
-  (let ((start (nth 8 (syntax-ppss)))
-        (end (save-excursion
-               (forward-sexp)
-               (1+ (point)))))
-    (form-amt-where (url-get-qs (buffer-substring start end)))))
-
-(defun form-amt-where (qs)
-  (interactive)
-  (let (str)
-    (--each qs
-      (let ((key (car it))
-            (val (cadr it)))
-        (cond ((equal key "app")
-               (setq str (concat "where app = '" val "'" str)))
-              ((or (equal key "msg")
-                   (equal key "topic"))
-               (setq str (concat str " and " key " = '" val "'"))))))
-    (message str)
-    (kill-new str)
-    str))
+(defmacro comment (&rest ignore))
