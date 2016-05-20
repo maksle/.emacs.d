@@ -1,5 +1,5 @@
 (require 'package)
-(require 'dash)
+;; (require 'dash)
 
 ;; Add melpa to package repos
 (add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
@@ -9,10 +9,18 @@
 (unless (file-exists-p "~/.emacs.d/elpa/archives/melpa")
   (package-refresh-contents))
 
+;; (defun packages-install (packages)
+;;   (--each packages
+;;     (when (not (package-installed-p it))
+;;       (package-install it)))
+;;   (delete-other-windows))
+
 (defun packages-install (packages)
-  (--each packages
-    (when (not (package-installed-p it))
-      (package-install it)))
+  (mapc
+   (lambda (package)
+     (when (not (package-installed-p package))
+       (package-install package)))
+   packages)
   (delete-other-windows))
 
 ;;; On-demand installation of packages
