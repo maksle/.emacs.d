@@ -17,3 +17,8 @@ custom.el
 projectile-bookmarks.eld
 projectile.cache
 geben
+users/*
+recentf
+server
+ido.last
+smex-items

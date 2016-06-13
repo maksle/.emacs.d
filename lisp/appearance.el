@@ -9,9 +9,13 @@
 ;; set font
 ;; default font
 ;; (set-default-font "-outline-DejaVu Sans Mono-normal-normal-normal-mono-15-*-*-*-c-*-iso8859-1")
+
 (if (member "Inconsolata" (font-family-list))
-    (progn (set-frame-font "Inconsolata")
-           (set-face-attribute :height 135))
+    ;; (progn (set-frame-font "Inconsolata")
+    ;;        (set-face-attribute :height 135))
+
+    (set-frame-font "Mononoki-12")
+    ;; (set-frame-font "Inconsolata-13")
 )
   ;; (set-frame-font "Bitstream Vera Sans Mono")
   ;; (set-face-attribute 'default nil :height 115))
@@ -88,6 +92,8 @@
 (eval-after-load "volatile-highlights" '(diminish 'volatile-highlights-mode))
 (eval-after-load "anzu" '(diminish 'anzu-mode))
 (eval-after-load "subword" '(diminish 'subword-mode))
+(eval-after-load "flycheck" '(diminish 'flycheck-mode))
+(eval-after-load "js2-refactor" '(diminish 'js2-refactor-mode))
 
 (defmacro rename-modeline (package-name mode new-name)
   `(eval-after-load ,package-name

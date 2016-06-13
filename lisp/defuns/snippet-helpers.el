@@ -1,3 +1,6 @@
+;; (defun snippet--string-wrap (str)
+;;   (format "\"%s\"" str))
+
 ;;; javascript
 
 (defun js-method-p ()

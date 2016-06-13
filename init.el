@@ -129,6 +129,7 @@
 ;; (eval-after-load 'grep '(require 'setup-rgrep))
 ;; (eval-after-load 'shell '(require 'setup-shell))
 
+(require 'setup-cygwin)
 (require 'setup-shell)
 (require 'setup-hippie)
 (require 'setup-yasnippet)
@@ -196,6 +197,9 @@
 
 ;; project management
 (projectile-global-mode)
+(setq projectile-mode-line 
+      '(:eval (if (file-remote-p default-directory) ""
+                (format " P[%s]" (projectile-project-name)))))
 
 ;; Fill column indicator
 (require 'fill-column-indicator)

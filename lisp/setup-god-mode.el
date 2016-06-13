@@ -31,6 +31,9 @@
 
 (add-hook 'overwrite-mode-hook 'god-toggle-on-overwrite)
 
+(add-to-list 'god-exempt-major-modes 'help-mode)
+(add-to-list 'god-exempt-major-modes 'Info-mode)
+
 (define-key god-local-mode-map (kbd "z") 'repeat)
 (define-key god-local-mode-map (kbd "i") 'god-local-mode)
 (define-key god-local-mode-map (kbd "h") 'backward-delete-char)

@@ -22,10 +22,16 @@
 (add-hook 'js2-mode-hook (lambda () (flycheck-mode 1)))
 
 (require 'js2-refactor)
+(add-hook 'js2-mode-hook #'js2-refactor-mode)
 (js2r-add-keybindings-with-prefix "C-c C-m")
 
 (require 'js2-imenu-extras)
-(js2-imenu-extras-setup)
+(add-hook 'js2-mode-hook 'js2-imenu-extras-mode)
+
+(require 'js-doc)
+(setq js-doc-author (format "Maksim Grinman"))
+(define-key js2-mode-map (kbd "C-c C-m i d") 'js-doc-insert-function-doc)
+(define-key js2-mode-map "@" 'js-doc-insert-tag)
 
 ;; Set up wrapping of pairs, with the possiblity of semicolons thrown into the mix
 
@@ -144,9 +150,26 @@
     (unless (yas-expand)
       (indent-for-tab-command)
       (if (looking-back "^\s*")
-          (back-to-indentation)))))
+          (back-to-indentation))
+      (one-shot-keybinding "<tab>" 'js2-indent-bounce)
+      )))
 
 (define-key js2-mode-map (kbd "TAB") 'js2-tab-properly)
+
+(setq-default js2-bounce-indent-p t)
+;; (define-key js2-mode-map (kbd "<tab>")
+;;   (lambda ()
+;;     (indent-for-tab-command)
+;;     (one-shot-keybinding "<tab>" 'js2-indent-bounce)))
+(define-key js2-mode-map (kbd "<backtab>") 'js2-indent-bounce-backward)
+
+(setq-default js2-basic-offset 2)
+
+(defun js2-toggle-tab-width ()
+  (interactive)
+  (if (eq js2-basic-offset 2)
+      (setq js2-basic-offset 4)
+    (setq js2-basic-offset 2)))
 
 ;; When renaming/deleting js-files, check for corresponding testfile
 (define-key js2-mode-map (kbd "C-x C-r") 'js2r-rename-current-buffer-file)
@@ -191,9 +214,10 @@
 (require 'json)
 
 ;; Tern.JS
-(add-to-list 'load-path (expand-file-name "tern/emacs" site-lisp-dir))
+;; (add-to-list 'load-path (expand-file-name "tern/emacs" site-lisp-dir))
 (autoload 'tern-mode "tern.el" nil t)
-;;(add-hook 'js2-mode-hook (lambda () (tern-mode t)))
+(setq tern-command (list "C:\\Users\\Maksim\\AppData\\Roaming\\npm\\tern.cmd"))
+(add-hook 'js2-mode-hook (lambda () (tern-mode t)))
 (eval-after-load 'auto-complete
   '(eval-after-load 'tern
      '(progn
