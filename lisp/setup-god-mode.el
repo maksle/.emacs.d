@@ -17,7 +17,7 @@
 (setq minor-mode-alist
       `(,@(assq-delete-all 'god-local-mode minor-mode-alist)
         (god-local-mode " ")
-        (god-local-mode #("God" 0 3 (face (:foreground "yellow" :background "blue"))))))
+        (god-local-mode #("G" 0 1 (face (:foreground "yellow" :background "blue"))))))
 
 
 (setq my-saved-mode-line-background (face-attribute 'mode-line :background))

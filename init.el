@@ -1,5 +1,12 @@
 
 ;; Turn off mouse interface early in startup to avoid momentary display
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
@@ -52,6 +59,7 @@
      anzu
      apache-mode
      auto-complete
+     ag
      bash-completion
      browse-kill-ring
      change-inner
@@ -74,7 +82,7 @@
      highlight-escape-sequences
      ido-at-point
      ido-vertical-mode
-     ido-ubiquitous
+     ido-completing-read+
      js2-mode
      js2-refactor
      less-css-mode
@@ -129,7 +137,7 @@
 ;; (eval-after-load 'grep '(require 'setup-rgrep))
 ;; (eval-after-load 'shell '(require 'setup-shell))
 
-(require 'setup-cygwin)
+;; (require 'setup-cygwin)
 (require 'setup-shell)
 (require 'setup-hippie)
 (require 'setup-yasnippet)

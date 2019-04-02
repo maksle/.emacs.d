@@ -136,6 +136,7 @@
 
 ;; Navigation bindings
 (global-set-key [remap goto-line] 'goto-line-with-feedback)
+(global-set-key (kbd "M-g") 'goto-line)
 
 (global-set-key (kbd "M-p") 'backward-paragraph)
 (global-set-key (kbd "M-n") 'forward-paragraph)
