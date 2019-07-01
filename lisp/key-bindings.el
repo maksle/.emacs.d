@@ -122,6 +122,7 @@
 (global-set-key (kbd "C-c <C-kp-enter>") 'delete-blank-lines)
 
 ;; Indentation help
+(bind-key* "M-j" (lam (join-line -1)))
 (global-set-key (kbd "M-j") (lam (join-line -1)))
 
 ;; Help should search more than just commands

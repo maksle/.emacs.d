@@ -104,6 +104,7 @@
      smartparens
      tagedit
      tern
+     use-package
      volatile-highlights
      web-mode
      wgrep
