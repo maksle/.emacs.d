@@ -204,7 +204,8 @@
 (require 'wgrep)
 
 ;; project management
-(projectile-global-mode)
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 (setq projectile-mode-line 
       '(:eval (if (file-remote-p default-directory) ""
                 (format " P[%s]" (projectile-project-name)))))

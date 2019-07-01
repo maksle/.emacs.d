@@ -1,8 +1,8 @@
-(add-to-list 'which-func-modes 'csharp-mode)
-(add-to-list 'which-func-modes 'c++-mode)
-(add-to-list 'which-func-modes 'c-mode)
-(add-to-list 'which-func-modes 'python-mode)
-(add-to-list 'which-func-modes 'sh-mode)
+;; (add-to-list 'which-func-modes 'csharp-mode)
+;; (add-to-list 'which-func-modes 'c++-mode)
+;; (add-to-list 'which-func-modes 'c-mode)
+;; (add-to-list 'which-func-modes 'python-mode)
+;; (add-to-list 'which-func-modes 'sh-mode)
 
 ;; CSS
 (add-to-list 'auto-mode-alist '("\\.scss\\'" . css-mode))
