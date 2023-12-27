@@ -28,10 +28,10 @@
 (require 'js2-imenu-extras)
 (add-hook 'js2-mode-hook 'js2-imenu-extras-mode)
 
-(require 'js-doc)
-(setq js-doc-author (format "Maksim Grinman"))
-(define-key js2-mode-map (kbd "C-c C-m i d") 'js-doc-insert-function-doc)
-(define-key js2-mode-map "@" 'js-doc-insert-tag)
+;; (require 'js-doc)
+;; (setq js-doc-author (format "Maksim Grinman"))
+;; (define-key js2-mode-map (kbd "C-c C-m i d") 'js-doc-insert-function-doc)
+;; (define-key js2-mode-map "@" 'js-doc-insert-tag)
 
 ;; Set up wrapping of pairs, with the possiblity of semicolons thrown into the mix
 

@@ -26,6 +26,7 @@
         shell
         sp--self-insert-command
         sp-forward-slurp-sexp
+        yaml-electric-backspace
         yas-expand
         yas-next-field-or-maybe-expand
         ))

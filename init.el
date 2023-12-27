@@ -5,7 +5,7 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
-(package-initialize)
+; (package-initialize)
 
 (if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
@@ -60,6 +60,7 @@
      apache-mode
      auto-complete
      ag
+     blacken
      bash-completion
      browse-kill-ring
      change-inner
@@ -93,6 +94,7 @@
      neotree
      php-mode
      projectile
+     pyenv-mode
      quack
      rainbow-mode
      shell-command
@@ -172,6 +174,7 @@
 (eval-after-load 'css-mode '(require 'setup-css))
 (eval-after-load 'less-css-mode '(require 'setup-less-mode))
 (eval-after-load "erc" '(require 'setup-irc))
+(eval-after-load 'python-mode '(require 'setup-python))
 
 ;; fix (un)commenting of comments
 (require 'mz-comment-fix)
